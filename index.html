@@ -469,7 +469,7 @@
       var fd=new FormData(form);fd.append('_subject','New audit request, Watermouse Ads');fd.append('_template','table');fd.append('_captcha','false');var _c=document.getElementById('f-consent');fd.append('Marketing consent',_c&&_c.checked?'Yes':'No');
       fetch(FORMSUBMIT_ENDPOINT,{method:'POST',headers:{'Accept':'application/json'},body:fd})
         .then(function(r){return r.json().catch(function(){return{};});})
-        .then(function(j){if(j&&(j.success==='true'||j.success===true))done();else throw 0;})
+        .then(function(j){if(j&&(j.success==='true'||j.success===true)){window.dataLayer=window.dataLayer||[];window.dataLayer.push({event:'generate_lead',origem:'ads'});done();}else throw 0;})
         .catch(function(){st.className='form-status err';st.innerHTML='We couldn\'t send that just now. Try again in a moment, or <a href="'+mailHref(d)+'">send it by email</a>.';})
         .finally(function(){btn.disabled=false;btn.textContent='Request my free audit';});
     });
